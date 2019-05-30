@@ -75,19 +75,17 @@
 
 
 
-<meta name="description" content="kali在进行apt-get 更新源的时候出现错误，提示由于没有公钥，无法验证下列签名： 如：NO_PUBKEY EB3E94ADBE1229CF 于是百度教程发现基本上没有用 使用命令导入公钥也没有用  都是提示签名因为密钥遗失无法被检查，原因我也不是很清楚，可能是因为太久没有使用导致密钥过期问题， 解决方法: 可以执行命令 apt-key list 查看列表 使用命令完成公钥文件下载 ： wg">
+<meta name="description" content="博客搭建​    由于许久没有使用博客了，导致博客不可用，于是就把它卸载重新搭建，也是相当于巩固一下吧！ 话不多说开始吧 ​    搭建博客需要安装以下的东西： 1、下载Git 2、下载node.js 3、安装hexo 下载Git方式一(官网下载)：https://git-scm.com/download/win(到此页面后，会有一个下载弹框出现) 方式二(csdn下载)：http://downl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kali换源显示没有公钥问题">
-<meta property="og:url" content="http://liyusen.xyz/2019/05/30/kali换源显示没有公钥问题/index.html">
+<meta property="og:title" content="博客搭建">
+<meta property="og:url" content="http://liyusen.xyz/2019/05/30/博客搭建/index.html">
 <meta property="og:site_name" content="简单的世界">
-<meta property="og:description" content="kali在进行apt-get 更新源的时候出现错误，提示由于没有公钥，无法验证下列签名： 如：NO_PUBKEY EB3E94ADBE1229CF 于是百度教程发现基本上没有用 使用命令导入公钥也没有用  都是提示签名因为密钥遗失无法被检查，原因我也不是很清楚，可能是因为太久没有使用导致密钥过期问题， 解决方法: 可以执行命令 apt-key list 查看列表 使用命令完成公钥文件下载 ： wg">
+<meta property="og:description" content="博客搭建​    由于许久没有使用博客了，导致博客不可用，于是就把它卸载重新搭建，也是相当于巩固一下吧！ 话不多说开始吧 ​    搭建博客需要安装以下的东西： 1、下载Git 2、下载node.js 3、安装hexo 下载Git方式一(官网下载)：https://git-scm.com/download/win(到此页面后，会有一个下载弹框出现) 方式二(csdn下载)：http://downl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://liyusen.xyz/2019/05/30/kali换源显示没有公钥问题/wps1.jpg">
-<meta property="og:updated_time" content="2019-05-30T07:28:40.543Z">
+<meta property="og:updated_time" content="2019-05-30T08:32:02.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kali换源显示没有公钥问题">
-<meta name="twitter:description" content="kali在进行apt-get 更新源的时候出现错误，提示由于没有公钥，无法验证下列签名： 如：NO_PUBKEY EB3E94ADBE1229CF 于是百度教程发现基本上没有用 使用命令导入公钥也没有用  都是提示签名因为密钥遗失无法被检查，原因我也不是很清楚，可能是因为太久没有使用导致密钥过期问题， 解决方法: 可以执行命令 apt-key list 查看列表 使用命令完成公钥文件下载 ： wg">
-<meta name="twitter:image" content="http://liyusen.xyz/2019/05/30/kali换源显示没有公钥问题/wps1.jpg">
+<meta name="twitter:title" content="博客搭建">
+<meta name="twitter:description" content="博客搭建​    由于许久没有使用博客了，导致博客不可用，于是就把它卸载重新搭建，也是相当于巩固一下吧！ 话不多说开始吧 ​    搭建博客需要安装以下的东西： 1、下载Git 2、下载node.js 3、安装hexo 下载Git方式一(官网下载)：https://git-scm.com/download/win(到此页面后，会有一个下载弹框出现) 方式二(csdn下载)：http://downl">
 
 
 
@@ -97,7 +95,7 @@
     root: '/',
     scheme: 'Muse',
     version: '6.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":"ture","scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -119,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://liyusen.xyz/2019/05/30/kali换源显示没有公钥问题/">
+  <link rel="canonical" href="http://liyusen.xyz/2019/05/30/博客搭建/">
 
 
 
@@ -139,12 +137,14 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
   
   
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-right page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -190,12 +190,32 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/yuluo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
           </a>
         </li>
       
@@ -316,6 +336,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/6.jpg" alt="羽洛l">
+            
               <p class="site-author-name" itemprop="name">羽洛l</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -357,6 +379,11 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -378,7 +405,7 @@
 
   
 </div>
-
+<!--
 
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
@@ -390,7 +417,7 @@
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.0</div>
 
-
+-->
 
 
         
@@ -405,11 +432,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -437,6 +459,8 @@
 
 
 
+  
+
 
 
 
@@ -460,6 +484,11 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
