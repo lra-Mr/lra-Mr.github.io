@@ -82,12 +82,12 @@
 <meta property="og:site_name" content="简单的世界">
 <meta property="og:description" content="kali在进行apt-get 更新源的时候出现错误，提示由于没有公钥，无法验证下列签名： 如：NO_PUBKEY EB3E94ADBE1229CF 于是百度教程发现基本上没有用 使用命令导入公钥也没有用  都是提示签名因为密钥遗失无法被检查，原因我也不是很清楚，可能是因为太久没有使用导致密钥过期问题， 解决方法: 可以执行命令 apt-key list 查看列表 使用命令完成公钥文件下载 ： wg">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://liyusen.xyz/2019/05/30/uploads/img/wps1.jpg">
-<meta property="og:updated_time" content="2019-05-30T07:10:55.051Z">
+<meta property="og:image" content="http://liyusen.xyz/2019/05/30/kali换源显示没有公钥问题/wps1.jpg">
+<meta property="og:updated_time" content="2019-05-30T07:28:40.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kali换源显示没有公钥问题">
 <meta name="twitter:description" content="kali在进行apt-get 更新源的时候出现错误，提示由于没有公钥，无法验证下列签名： 如：NO_PUBKEY EB3E94ADBE1229CF 于是百度教程发现基本上没有用 使用命令导入公钥也没有用  都是提示签名因为密钥遗失无法被检查，原因我也不是很清楚，可能是因为太久没有使用导致密钥过期问题， 解决方法: 可以执行命令 apt-key list 查看列表 使用命令完成公钥文件下载 ： wg">
-<meta name="twitter:image" content="http://liyusen.xyz/2019/05/30/uploads/img/wps1.jpg">
+<meta name="twitter:image" content="http://liyusen.xyz/2019/05/30/kali换源显示没有公钥问题/wps1.jpg">
 
 
 
@@ -301,14 +301,14 @@
 <p>如：NO_PUBKEY EB3E94ADBE1229CF</p>
 <p>于是百度教程发现基本上没有用</p>
 <p>使用命令导入公钥也没有用</p>
-<p><img src="../uploads/img/wps1.jpg" alt></p>
+<p><img src="wps1.jpg" alt></p>
 <p>都是提示签名因为密钥遗失无法被检查，原因我也不是很清楚，可能是因为太久没有使用导致密钥过期问题，</p>
 <p>解决方法:</p>
 <p>可以执行命令 apt-key list 查看列表</p>
 <p>使用命令完成公钥文件下载 ： wget <a href="https://www.kali.org/archive-key.asc" target="_blank" rel="noopener">https://www.kali.org/archive-key.asc</a></p>
 <p>在使用命令：apt-key add archive-key.asc ，添加最新公钥文件</p>
 <p>之后再用命令导入公钥，如我的公钥为：</p>
-<p>sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys EB3E94ADBE1229CF（EB3E94ADBE1229CF为错误提示key）</p>
+<p>​    sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys   EB3E94ADBE1229CF（EB3E94ADBE1229CF为错误提示key）</p>
 <p>在执行 apt-get update 就可以了。</p>
 <p>详情请查看：<a href="https://blog.csdn.net/Secur17y/article/details/79949367" target="_blank" rel="noopener">https://blog.csdn.net/Secur17y/article/details/79949367</a></p>
 
