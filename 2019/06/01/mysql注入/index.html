@@ -75,17 +75,17 @@
 
 
 
-<meta name="description" content="web 安全之 SQL 注入漏洞1SCHEMATA 表：(所有的数据库名在这个表)提供了当前 mysql 实例中所有数据库的信息。是show databases 的结果取之此表。 TABLES 表：(所有的数据库的表名在这个表)提供了关于数据库中的表的信息（包括视图）。 详细表述了某个表属于哪个 schema，表类型，表引擎，创建时间等信息。是 show tables fromschemaname">
+<meta name="description" content="owasp top10top-1注入 ###:危害如下： 注入可以导致数据丢失或被破坏，缺乏可审计性或拒绝服务。注入漏洞有时甚至可导致完全接管主机 如何防范： 1.使用安全的API，避免使用解释器 2.对输入的特殊的字符进行ESCAPE转义处理 例子：LIKE ‘%M%’ ESCAPE ‘M’使用ESCAPE关键字定义了转义字符“M”，告诉DBMS将搜索字符串“%M%”中的第二个百分符（%）作为实">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL注入漏洞">
-<meta property="og:url" content="http://liyusen.xyz/2019/06/29/SQL注入漏洞/index.html">
+<meta property="og:title" content="关于owasp 10">
+<meta property="og:url" content="http://liyusen.xyz/2019/07/04/关于owasp-10/index.html">
 <meta property="og:site_name" content="简单的世界">
-<meta property="og:description" content="web 安全之 SQL 注入漏洞1SCHEMATA 表：(所有的数据库名在这个表)提供了当前 mysql 实例中所有数据库的信息。是show databases 的结果取之此表。 TABLES 表：(所有的数据库的表名在这个表)提供了关于数据库中的表的信息（包括视图）。 详细表述了某个表属于哪个 schema，表类型，表引擎，创建时间等信息。是 show tables fromschemaname">
+<meta property="og:description" content="owasp top10top-1注入 ###:危害如下： 注入可以导致数据丢失或被破坏，缺乏可审计性或拒绝服务。注入漏洞有时甚至可导致完全接管主机 如何防范： 1.使用安全的API，避免使用解释器 2.对输入的特殊的字符进行ESCAPE转义处理 例子：LIKE ‘%M%’ ESCAPE ‘M’使用ESCAPE关键字定义了转义字符“M”，告诉DBMS将搜索字符串“%M%”中的第二个百分符（%）作为实">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-29T08:50:33.354Z">
+<meta property="og:updated_time" content="2019-07-04T10:20:57.910Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQL注入漏洞">
-<meta name="twitter:description" content="web 安全之 SQL 注入漏洞1SCHEMATA 表：(所有的数据库名在这个表)提供了当前 mysql 实例中所有数据库的信息。是show databases 的结果取之此表。 TABLES 表：(所有的数据库的表名在这个表)提供了关于数据库中的表的信息（包括视图）。 详细表述了某个表属于哪个 schema，表类型，表引擎，创建时间等信息。是 show tables fromschemaname">
+<meta name="twitter:title" content="关于owasp 10">
+<meta name="twitter:description" content="owasp top10top-1注入 ###:危害如下： 注入可以导致数据丢失或被破坏，缺乏可审计性或拒绝服务。注入漏洞有时甚至可导致完全接管主机 如何防范： 1.使用安全的API，避免使用解释器 2.对输入的特殊的字符进行ESCAPE转义处理 例子：LIKE ‘%M%’ ESCAPE ‘M’使用ESCAPE关键字定义了转义字符“M”，告诉DBMS将搜索字符串“%M%”中的第二个百分符（%）作为实">
 
 
 
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://liyusen.xyz/2019/06/29/SQL注入漏洞/">
+  <link rel="canonical" href="http://liyusen.xyz/2019/07/04/关于owasp-10/">
 
 
 
@@ -508,7 +508,7 @@ and 1=2 union select 1,2,group_concat(username,password),4 from users(表名)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
